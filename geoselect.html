@@ -1,0 +1,113 @@
+<html>
+	<head>
+		<!-- incluir jquery -->
+		<script src="jquery/jquery-2.1.1.js"></script>
+		<!-- script
+			1. carregar via ajax sincrono geo.xml guardar em var geoXML
+			2. inicializar selects com "Loading..."
+			3. obter nomes e ids dos continentes de geoXML e carregar select scontinent
+			4. regions e countries
+		-->
+		<script>
+			var geoXML;
+			
+			$.ajax({
+				url: "geo.xml",
+				type : "GET",
+				datatype: "xml",
+				async: false,
+				success: function (data) {
+					geoXML = data;
+				}
+			});
+			
+			//alert(geoXML);
+			
+			$(document).ready(function () {
+				//initSelect("#scontinent","waiting");
+				//initSelect("#sregion","waiting");
+				//initSelect("#scountry","waiting");
+				initSelect("#f1 select","waiting...");
+				loadContinents();
+				$("#scontinent").change(loadRegions);
+				$("#sregion").change(loadCountries);
+				
+				
+				
+				
+				
+			});
+			
+			function loadContinents() {
+				initSelect("#scontinent","Select a Continent");
+				initSelect("#sregion","Waiting");
+				initSelect("#scountry","Waiting");
+				// obter os nos continent do xml
+				collection = $(geoXML).find("continent");
+				$(collection).each(function (idx,node) {
+					node_name = $(node).children("name").text();
+					node_id = $(node).attr("id");
+					option = $("<option/>").attr("id",node_id).attr("value",node_id).text(node_name);
+					$("#scontinent").append(option);
+				});
+			}
+			
+			function loadRegions() {
+				initSelect("#sregion","Select a Region");
+				initSelect("#scountry","Waiting");
+				
+				selected_id = $("#scontinent").children(":selected").attr("id");
+				
+				filterS = "[id='"+selected_id+"']";
+				
+				// obter os nos continent do xml
+				collection = $(geoXML).find("continent").filter(filterS).children("region");
+				$(collection).each(function (idx,node) {
+					node_name = $(node).children("name").text();
+					node_id = $(node).attr("id");
+					option = $("<option/>").attr("id",node_id).attr("value",node_id).text(node_name);
+					$("#sregion").append(option);
+				});
+			}
+			
+		function loadCountries() {
+				initSelect("#scountry","Select a Region");
+				
+				selected_id = $("#sregion").children(":selected").attr("id");
+				
+				filterS = "[id='"+selected_id+"']";
+				
+				// obter os nos continent do xml
+				collection = $(geoXML).find("region").filter(filterS).children("country");
+				$(collection).each(function (idx,node) {
+					node_name = $(node).children("name").text();
+					node_id = $(node).attr("id");
+					option = $("<option/>").attr("id",node_id).attr("value",node_id).text(node_name);
+					$("#scountry").append(option);
+				});
+			}
+			
+			
+			function initSelect(selector,message) {
+				$(selector).empty();
+				option = $("<option/>").attr("disabled","disabled").attr("selected","selected").text(message);
+				$(selector).append(option);	
+			}
+			
+		</script>
+
+	</head>
+	<body>
+		<!-- form get, dump.php id= f1 -->
+		<!-- 3 selects id=scontinent, sregion e scountry -->
+		<form id="f1" method="get" action="dump.php">
+			<select id="scontinent" name="continent"></select>
+			<br/>
+			<select id="sregion" name="region"></select>
+			<br/>
+			<select id="scountry" name="country"></select>
+			<br/>
+			<input type="submit" />
+		</form>
+	</body>
+</html>
