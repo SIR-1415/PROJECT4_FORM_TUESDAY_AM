@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<geo>
+		<continent id="1">
+			<name>America</name>
+				<region id="1_1">
+					<name>Northern America</name>
+						<country id="1_1_1">
+							<name>USA</name>
+						</country>
+						<country id="1_1_2">
+							<name>Canada</name>
+						</country>
+				</region>
+				<region id="1_2">
+					<name>Central America</name>
+						<country id="1_2_1">
+							<name>Costa Rica</name>
+						</country>
+						<country id="1_2_2">
+							<name>Panama</name>
+						</country>
+				</region>
+				<region id="1_3">
+					<name>Southern America</name>
+						<country id="1_3_1">
+							<name>Brazil</name>
+						</country>
+						<country id="1_3_2">
+							<name>Argentina</name>
+						</country>
+						<country id="1_3_3">
+							<name>Peru</name>
+						</country>
+				</region>
+		</continent>
+		<continent id="2">
+			<name>Europe</name>
+				<region id="2_1">
+					<name>Northern Europe</name>
+						<country id="2_1_1">
+							<name>Latvia</name>
+						</country>
+						<country id="1_2_2">
+							<name>Lithuania</name>
+						</country>
+				</region>
+				<region id="2_2">
+					<name>Western Europe</name>
+						<country id="2_2_1">
+							<name>Germany</name>
+						</country>
+						<country id="2_2_2">
+							<name>France</name>
+						</country>
+				</region>
+				<region id="2_3">
+					<name>Southern Europe</name>
+						<country id="2_3_1">
+							<name>Portugal</name>
+						</country>
+						<country id="2_3_2">
+							<name>Italy</name>
+						</country>
+						<country id="2_3_3">
+							<name>Spain</name>
+						</country>
+				</region>
+				<region id="2_4">
+					<name>Eastern Europe</name>
+						<country id="2_4_1">
+							<name>Ukraine</name>
+						</country>
+						<country id="2_4_2">
+							<name>Poland</name>
+						</country>
+				</region>
+		</continent>
+</geo>
+
+
